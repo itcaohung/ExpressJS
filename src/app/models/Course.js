@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const Course = new Schema({
     name: {type: String},
-    discription: {type: String},
+    description: {type: String},
     image: {type: String},
     videoId: {type: String},
     createdAt: {type: Date, default: Date.now},
