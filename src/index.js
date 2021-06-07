@@ -14,6 +14,12 @@ const port = 3000
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Support for res.body()
+app.use(express.urlencoded({
+  extended: true
+}));
+app.use(express.json());
+
 // HTTP Logger
 // app.use(morgan('combined'))
 
