@@ -3,6 +3,8 @@ const morgan = require('morgan')
 const path = require('path');
 const handlebars = require("express-handlebars");
 
+const methodOverride = require('method-override');
+
 const route = require('./routes');
 const db = require('./config/db');
 
@@ -20,12 +22,18 @@ app.use(express.urlencoded({
 }));
 app.use(express.json());
 
+// override with POST having ?_method=PUT
+app.use(methodOverride('_method'))
+
 // HTTP Logger
 // app.use(morgan('combined'))
 
 // Template engine
 app.engine('hbs', handlebars({
-  extname: '.hbs'
+  extname: '.hbs',
+  helpers: {
+    sum: (a, b) => a + b,
+  }
 }));
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources', 'views'));
