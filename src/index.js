@@ -4,6 +4,7 @@ const path = require('path');
 const handlebars = require("express-handlebars");
 
 const methodOverride = require('method-override');
+const cookieParser = require('cookie-parser');
 
 const route = require('./routes');
 const db = require('./config/db');
@@ -15,6 +16,7 @@ const app = express()
 const port = 3000
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieParser());
 
 // Support for res.body()
 app.use(express.urlencoded({
