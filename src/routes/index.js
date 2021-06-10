@@ -10,7 +10,7 @@ function route(app) {
     app.use('/auth', authRouter);
     app.use('/courses', authMiddleware.requireAuth, coursesRouter);
     app.use('/me', authMiddleware.requireAuth,meRouter);
-    app.get('/', siteRouter);
+    app.get('/', authMiddleware.requireAuth, siteRouter);
 }
 
 module.exports = route;
